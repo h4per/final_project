@@ -6,23 +6,20 @@ https://www.canva.com/design/DAGlVzn-QQk/sy9hEtH8keoSzGZxue9J1w/edit?utm_content
 
 This is a JavaFX-based application for managing vocabulary when learning a new language.  
 You can add words, write definitions, provide usage examples, and organize them by language.  
-Perfect for self-learners, polyglots, and memory freaks 
-
 ---
 
 ## Features
 
 1. **Add new words** with definitions and examples  
-2. **Choose a language**: English 🇬🇧, German 🇩🇪, Russian 🇷🇺  
+2. **Choose a language**: English, German, Russian 
 3. **Avoid duplicates** – app checks before saving  
 4. **Update existing words** easily  
-5. **Switch tabs** between Learn, Practice, Profile  
+5. **Switch tabs** between Learn, Profile  
 6. **Clean and responsive UI** with JavaFX TableView  
 7. **SQLite database** — fast, light, local  
 8. **Auto-fill fields** when selecting a word  
 9. **Reset inputs** with one click  
 10. **Fully offline and private** — your vocab is yours
-
 ---
 
 ## Installation
