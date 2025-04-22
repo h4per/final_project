@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="llvt_group.llvt_project.Dashboard.DashboardController">
+
+   <left>
+      <AnchorPane prefHeight="700.0" prefWidth="226.0" style="-fx-background-color: #04040A;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="34.0" layoutY="48.0" text="LLVT" textFill="#b6e500">
+               <font>
+                  <Font name="MS Gothic" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="learnActionButton" layoutX="20.0" layoutY="135.0" mnemonicParsing="false" onAction="#learnActionButtonClicked" style="-fx-background-color: transparent;" text="LEARN" textFill="WHITE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="practiceActionButton" layoutX="20.0" layoutY="177.0" mnemonicParsing="false" onAction="#practiceActionButtonClicked" style="-fx-background-color: transparent;" text="PRACTICE" textFill="WHITE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="profileActionButton" layoutX="20.0" layoutY="218.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+            <MenuButton fx:id="languageChooseBox" layoutX="20.0" layoutY="368.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="RUSSIAN" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="ENGLISH" />
+                  <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="GERMAN" />
+               </items>
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </MenuButton>
+            <Button fx:id="exitButton" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+
+   <center>
+      <StackPane fx:id="mainContent" style="-fx-background-color: #b6e500;" BorderPane.alignment="CENTER">
+
+         <!-- Learn Page -->
+         <AnchorPane fx:id="learnPage" prefHeight="700.0" prefWidth="635.0" style="-fx-background-color: #b6e500;">
+
+         <TextField fx:id="wordTextField" layoutX="153.0" layoutY="151.0" prefHeight="28.0" prefWidth="240.0" promptText="ENTER WORD" style="-fx-border-color: #000000;">
+               <font>
+                  <Font name="MS Gothic" size="20.0" />
+               </font></TextField>
+            <TextArea fx:id="definitionTextArea" layoutX="152.0" layoutY="196.0" prefHeight="20.0" prefWidth="240.0" promptText="ENTER DEFINITION" style="-fx-border-color: #000000;">
+               <font>
+                  <Font name="MS Gothic" size="18.0" />
+               </font></TextArea>
+            <TextArea fx:id="exampleTextArea" layoutX="152.0" layoutY="255.0" prefHeight="20.0" prefWidth="240.0" promptText="ENTER USAGE EXAMPLE" style="-fx-border-color: #000000;">
+               <font>
+                  <Font name="MS Gothic" size="18.0" />
+               </font></TextArea>
+
+            <Button fx:id="addWordButton" layoutX="413.0" layoutY="147.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD WORD">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font></Button>
+
+            <ListView fx:id="vocabularyList" layoutX="35.0" layoutY="428.0" prefHeight="138.0" prefWidth="551.0" />
+            <Label layoutX="34.0" layoutY="375.0" text="LEARNED WORDS">
+               <font>
+                  <Font name="MS Gothic" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="157.0" text="WORD">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="263.0" text="EXAMPLE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="48.0" text="LEARNING PAGE">
+               <font>
+                  <Font name="MS Gothic" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="210.0" text="DEFINITION">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="addDefinitionButton" layoutX="413.0" layoutY="199.0" prefHeight="46.0" prefWidth="202.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD DEFINITION">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="addExampleButton" layoutX="412.0" layoutY="256.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD EXAMPLE">
+               <font>
+                  <Font name="MS Gothic" size="24.0" />
+               </font>
+            </Button>
+         </AnchorPane>
+
+      </StackPane>
+   </center>
+</BorderPane>
