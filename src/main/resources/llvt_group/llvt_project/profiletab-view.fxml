@@ -93,7 +93,7 @@
                             <Font name="MS Gothic" size="22.0" />
                         </font>
                     </Button>
-                    <Button fx:id="deleteButtonClicked" layoutX="299.0" layoutY="256.0" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="DELETE">
+                    <Button fx:id="userDeleteButton" layoutX="299.0" layoutY="256.0" onAction="#userDelete" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="DELETE">
                         <font>
                             <Font name="MS Gothic" size="22.0" />
                         </font>

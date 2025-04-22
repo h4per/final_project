@@ -20,6 +20,7 @@ public class DatabaseConnection {
         }
          catch (Exception e){
             System.out.println(e.getMessage());
+//            e.printStackTrace();
         }
 
         return databaseLink;

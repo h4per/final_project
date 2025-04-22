@@ -1,7 +1,5 @@
 package llvt_group.llvt_project.AllData;
 
-import java.sql.Date;
-
 public class VocabularyData {
     private Integer id;
     private String word;

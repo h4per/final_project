@@ -15,9 +15,9 @@ import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.VocabularyData;
 
 import java.net.URL;
+
 import java.sql.*;
 
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -31,11 +31,11 @@ public class LearnTabController implements Initializable {
     @FXML private TableColumn<VocabularyData, String> wordColumn;
     @FXML private TableColumn<VocabularyData, String> definitionColumn;
     @FXML private TableColumn<VocabularyData, String> exampleColumn;
-    @FXML private TableColumn<VocabularyData, Date> dateColumn;
 
     @FXML public MenuItem englishMenuItem;
     @FXML public MenuItem germanMenuItem;
     @FXML public MenuItem russianMenuItem;
+
     private String selectedLanguage = "RUSSIAN";
 
     @FXML public Button addWordButton;
@@ -173,8 +173,6 @@ public class LearnTabController implements Initializable {
             e.printStackTrace();
 //            System.out.println(e.getMessage());
         }
-
-
     }
 
 
@@ -261,18 +259,17 @@ public class LearnTabController implements Initializable {
         });
     }
 
-    public void learnActionButtonClicked() {
+    @FXML public void learnActionButtonClicked() {
         switchUI(learnActionButton.getScene(), "/llvt_group/llvt_project/learntab-view.fxml");
     }
-    public void profileActionButtonClicked() {
+
+    @FXML public void profileActionButtonClicked() {
         switchUI(profileActionButton.getScene(), "/llvt_group/llvt_project/profiletab-view.fxml");
     }
 
-    public void exitButtonOnAction() {
+    @FXML public void exitButtonOnAction() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
-
-//        System.exit(0);
     }
 
     @Override
