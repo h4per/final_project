@@ -32,6 +32,8 @@ Perfect for self-learners, polyglots, and memory freaks
 - JavaFX 23  
 - SQLite JDBC driver (already included)
 - SceneBuilder
+- DB Browser for SQLite
+
 
 ---
 
@@ -58,5 +60,6 @@ Replace path\to\javafx\lib\* with your JavaFX SDK path
   - Add new words by filling the text fields
   - Choose a language from the dropdown
   - Click the "Add" button
+  - The word is added
 
 
