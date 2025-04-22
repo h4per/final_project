@@ -2,7 +2,7 @@
 ‿︵‿ヽ(°□° )ノ︵‿︵  
 ---
 https://www.canva.com/design/DAGlVzn-QQk/sy9hEtH8keoSzGZxue9J1w/edit?utm_content=DAGlVzn-QQk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-## Description
+### Description
 
 This is a JavaFX-based application for managing vocabulary when learning a new language.  
 You can add words, write definitions, provide usage examples, and organize them by language.  
@@ -58,5 +58,11 @@ Replace path\to\javafx\lib\* with your JavaFX SDK path
   - Choose a language from the dropdown
   - Click the "Add" button
   - The word is added
+    
+---
 
+### Known Issues
+   - Not fully implemented `ProfileTabController.java` and `UserData.java`
+   - Hardcoded DB credentials (security risk)
 
+---
