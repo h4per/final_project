@@ -47,6 +47,8 @@ public class LearnTabController implements Initializable {
 
     @FXML public MenuButton languageChooseBox;
 
+    Connection connectDB = DatabaseConnection.getConnection();
+
     public void vocabularyUpdate() {
         VocabularyData selectedItem = vocabularyTable.getSelectionModel().getSelectedItem();
 
@@ -67,7 +69,7 @@ public class LearnTabController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
 
         if (option.isPresent() && option.get() == ButtonType.OK) {
-            Connection connectDB = DatabaseConnection.getConnection();
+//            Connection connectDB = DatabaseConnection.getConnection();
             String query = "UPDATE vocabulary SET word = ?, definition = ?, example_sentence = ?, language_id = ? WHERE id = ?";
 
             try (PreparedStatement preparedStatement = connectDB.prepareStatement(query)) {
@@ -100,7 +102,7 @@ public class LearnTabController implements Initializable {
 
 
     public void vocabularyAdd(){
-        Connection connectDB = DatabaseConnection.getConnection();
+//        Connection connectDB = DatabaseConnection.getConnection();
         String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, created_at) VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement;
@@ -170,7 +172,7 @@ public class LearnTabController implements Initializable {
     public ObservableList<VocabularyData> addVocabularyData() {
         ObservableList<VocabularyData> listData = FXCollections.observableArrayList();
 
-        Connection connectDB = DatabaseConnection.getConnection();
+//        Connection connectDB = DatabaseConnection.getConnection();
         String query = "SELECT * FROM vocabulary";
 
         PreparedStatement preparedStatement;

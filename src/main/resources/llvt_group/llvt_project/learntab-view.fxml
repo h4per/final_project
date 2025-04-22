@@ -28,12 +28,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="practiceActionButton" layoutX="20.0" layoutY="177.0" mnemonicParsing="false" onAction="#practiceActionButtonClicked" style="-fx-background-color: transparent;" text="PRACTICE" textFill="WHITE">
-                    <font>
-                        <Font name="MS Gothic" size="24.0" />
-                    </font>
-                </Button>
-                <Button fx:id="profileActionButton" layoutX="20.0" layoutY="218.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
+                <Button fx:id="profileActionButton" layoutX="20.0" layoutY="176.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
@@ -48,7 +43,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </MenuButton>
-                <Button fx:id="exitButton" layoutX="20.0" layoutY="257.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
+                <Button fx:id="exitButton" layoutX="20.0" layoutY="215.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
                <font>
                   <Font name="MS Gothic" size="24.0" />
                </font>
@@ -81,7 +76,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font></Button>
 
-                <TableView fx:id="vocabularyTable" layoutX="35.0" layoutY="422.0" onMouseClicked="#addWordListShowData" onSort="#vocabularySelect" prefHeight="180.0" prefWidth="550.0">
+                <TableView fx:id="vocabularyTable" layoutX="35.0" layoutY="422.0" onMouseClicked="#setAddVocabularyListShowData" onSort="#vocabularySelect" prefHeight="180.0" prefWidth="550.0">
                     <columns>
                         <TableColumn fx:id="wordColumn" prefWidth="137.0" text="Word" />
                         <TableColumn fx:id="definitionColumn" prefWidth="137.0" text="Definition" />

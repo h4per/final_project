@@ -43,9 +43,6 @@ public class DashboardController {
     public void learnActionButtonClicked() {
         switchUI(learnActionButton.getScene(), "/llvt_group/llvt_project/learntab-view.fxml");
     }
-    public void practiceActionButtonClicked() {
-        switchUI(practiceActionButton.getScene(), "/llvt_group/llvt_project/practicetab-view.fxml");
-    }
     public void profileActionButtonClicked() {
         switchUI(profileActionButton.getScene(), "/llvt_group/llvt_project/profiletab-view.fxml");
     }

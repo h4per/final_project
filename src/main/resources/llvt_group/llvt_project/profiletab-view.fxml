@@ -24,12 +24,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="practiceActionButton" layoutX="20.0" layoutY="177.0" mnemonicParsing="false" onAction="#practiceActionButtonClicked" style="-fx-background-color: transparent;" text="PRACTICE" textFill="WHITE">
-                    <font>
-                        <Font name="MS Gothic" size="24.0" />
-                    </font>
-                </Button>
-                <Button fx:id="profileActionButton" layoutX="20.0" layoutY="218.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
+                <Button fx:id="profileActionButton" layoutX="20.0" layoutY="172.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
@@ -43,7 +38,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </MenuButton>
-                <Button fx:id="exitButton" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
+                <Button fx:id="exitButton" layoutX="19.0" layoutY="212.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
