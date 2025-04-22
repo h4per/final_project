@@ -19,17 +19,17 @@
                         <Font name="MS Gothic" size="36.0" />
                     </font>
                 </Label>
-                <Button fx:id="learnActionButton" layoutX="20.0" layoutY="135.0" mnemonicParsing="false" onAction="#learnActionButtonClicked" style="-fx-background-color: transparent;" text="LEARN" textFill="WHITE">
+                <Button fx:id="learnActionButton" layoutX="21.0" layoutY="140.0" mnemonicParsing="false" onAction="#learnActionButtonClicked" style="-fx-background-color: transparent;" text="LEARN" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="profileActionButton" layoutX="20.0" layoutY="172.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
+                <Button fx:id="profileActionButton" layoutX="21.0" layoutY="177.0" mnemonicParsing="false" onAction="#profileActionButtonClicked" style="-fx-background-color: transparent;" text="PROFILE" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </Button>
-                <MenuButton fx:id="languageChooseBox" layoutX="20.0" layoutY="368.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="RUSSIAN" textFill="WHITE">
+                <MenuButton fx:id="languageChooseBox" layoutX="20.0" layoutY="329.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="RUSSIAN" textFill="WHITE">
                     <items>
                         <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="ENGLISH" />
                         <MenuItem mnemonicParsing="false" style="-fx-background-color: transparent;" text="GERMAN" />
@@ -38,7 +38,7 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </MenuButton>
-                <Button fx:id="exitButton" layoutX="19.0" layoutY="212.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
+                <Button fx:id="exitButton" layoutX="20.0" layoutY="217.0" mnemonicParsing="false" onAction="#exitButtonOnAction" style="-fx-background-color: transparent;" text="EXIT" textFill="WHITE">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font>
@@ -77,13 +77,13 @@
                         </font>
                     </Label>
 
-                    <Label fx:id="wordsLearnedLabel" layoutX="234.0" layoutY="184.0" text="25" textFill="#04040A">
+                    <Label fx:id="updateAndDisplayLearnedWords" layoutX="234.0" layoutY="184.0" textFill="#04040A">
                         <font>
                             <Font name="MS Gothic" size="24.0" />
                         </font>
                     </Label>
 
-                    <Button fx:id="logoutButton" layoutX="49.0" layoutY="255.0" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="LOG OUT">
+                    <Button fx:id="logoutButton" layoutX="49.0" layoutY="255.0" onAction="#logoutButtonClicked" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="LOG OUT">
                         <font>
                             <Font name="MS Gothic" size="22.0" />
                         </font>
@@ -93,7 +93,7 @@
                             <Font name="MS Gothic" size="22.0" />
                         </font>
                     </Button>
-                    <Button fx:id="deleteButton" layoutX="299.0" layoutY="256.0" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="DELETE">
+                    <Button fx:id="deleteButtonClicked" layoutX="299.0" layoutY="256.0" style="-fx-background-color: #04040A; -fx-text-fill: white;" text="DELETE">
                         <font>
                             <Font name="MS Gothic" size="22.0" />
                         </font>

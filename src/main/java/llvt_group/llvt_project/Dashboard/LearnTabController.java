@@ -16,6 +16,7 @@ import llvt_group.llvt_project.AllData.VocabularyData;
 
 import java.net.URL;
 import java.sql.*;
+
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -30,6 +31,7 @@ public class LearnTabController implements Initializable {
     @FXML private TableColumn<VocabularyData, String> wordColumn;
     @FXML private TableColumn<VocabularyData, String> definitionColumn;
     @FXML private TableColumn<VocabularyData, String> exampleColumn;
+    @FXML private TableColumn<VocabularyData, Date> dateColumn;
 
     @FXML public MenuItem englishMenuItem;
     @FXML public MenuItem germanMenuItem;
@@ -37,11 +39,10 @@ public class LearnTabController implements Initializable {
     private String selectedLanguage = "RUSSIAN";
 
     @FXML public Button addWordButton;
-    @FXML public Button addDefinitionButton;
-    @FXML public Button addExampleButton;
+    @FXML public Button updateWordButton;
+    @FXML public Button deleteWordButton;
 
     @FXML public Button learnActionButton;
-    @FXML public Button practiceActionButton;
     @FXML public Button profileActionButton;
     @FXML public Button exitButton;
 
@@ -53,7 +54,7 @@ public class LearnTabController implements Initializable {
         VocabularyData selectedItem = vocabularyTable.getSelectionModel().getSelectedItem();
 
         if (selectedItem == null) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a word from the table to update.");
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a word from the table to update!");
             return;
         }
 
@@ -65,19 +66,18 @@ public class LearnTabController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("LLVT");
-        alert.setContentText("Are you sure you want to update this vocabulary?");
+        alert.setContentText("Are you sure you want to update this wordset?");
         Optional<ButtonType> option = alert.showAndWait();
 
         if (option.isPresent() && option.get() == ButtonType.OK) {
-//            Connection connectDB = DatabaseConnection.getConnection();
             String query = "UPDATE vocabulary SET word = ?, definition = ?, example_sentence = ?, language_id = ? WHERE id = ?";
 
             try (PreparedStatement preparedStatement = connectDB.prepareStatement(query)) {
 
                 int languageId = switch (selectedLanguage.toUpperCase()) {
                     case "ENGLISH" -> 1;
-                    case "GERMAN" -> 2;
-                    case "RUSSIAN" -> 3;
+                    case "RUSSIAN" -> 2;
+                    case "GERMAN" -> 3;
                     default -> 0;
                 };
 
@@ -89,90 +89,98 @@ public class LearnTabController implements Initializable {
 
                 preparedStatement.executeUpdate();
 
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Vocabulary updated successfully!");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Wordset updated successfully!");
 
-                setAddVocabularyListShowData();
+                vocabularyListShowData();
                 vocabularyReset();
 
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
+//                System.out.println(e.getMessage());
             }
         }
     }
 
-
-    public void vocabularyAdd(){
-//        Connection connectDB = DatabaseConnection.getConnection();
-        String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, created_at) VALUES (?, ?, ?, ?, ?)";
-
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
-
+    public void vocabularyAdd() {
         int languageId = switch (selectedLanguage.toUpperCase()) {
             case "ENGLISH" -> 1;
-            case "GERMAN" -> 2;
-            case "RUSSIAN" -> 3;
+            case "RUSSIAN" -> 2;
+            case "GERMAN" -> 3;
             default -> 0;
         };
 
-        try{
-            if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
-            }else{
-                String checkData = "SELECT word FROM vocabulary WHERE word = '"+wordTextField.getText()+"'";
-                preparedStatement = connectDB.prepareStatement(checkData);
-                resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()) {
-                    showAlert(Alert.AlertType.ERROR, "Error", "This word already exists!");
-
-                }else{
-                    preparedStatement = connectDB.prepareStatement(query);
-                    preparedStatement.setString(1, wordTextField.getText());
-                    preparedStatement.setString(2, definitionTextArea.getText());
-                    preparedStatement.setString(3, exampleTextArea.getText());
-
-                    Date date = new Date();
-                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                    preparedStatement.setInt(4, languageId);
-                    preparedStatement.setString(5, String.valueOf(sqlDate));
-
-                    preparedStatement.executeUpdate();
-                    showAlert(Alert.AlertType.INFORMATION, "Information", "New vocabulary successfully added!");
-
-                    setAddVocabularyListShowData();
-
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void vocabularyReset(){
-        wordTextField.setText("");
-        definitionTextArea.setText("");
-        exampleTextArea.setText("");
-    }
-
-    public void vocabularySelect(){
-        VocabularyData vocabData = vocabularyTable.getSelectionModel().getSelectedItem();
-        int num =  vocabularyTable.getSelectionModel().getSelectedIndex();
-
-        if(num - 1 < - 1){
+        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
             return;
         }
-        wordTextField.setText(vocabData.getWord());
-        definitionTextArea.setText(vocabData.getDefinition());
-        exampleTextArea.setText(vocabData.getExampleSentence());
+
+        String word = wordTextField.getText();
+        String definition = definitionTextArea.getText();
+        String example = exampleTextArea.getText();
+
+
+        String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, user_id, is_learned, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+
+            preparedStatement.setString(1, word);
+            preparedStatement.setString(2, definition);
+            preparedStatement.setString(3, example);
+            preparedStatement.setInt(4, languageId);
+            preparedStatement.setInt(5, 1);
+            preparedStatement.setBoolean(6, true);
+
+            int rows = preparedStatement.executeUpdate();
+
+            if (rows > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Word added successfully.");
+                vocabularyReset();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+//            System.out.println(e.getMessage());
+
+            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
+        }
+    }
+
+    public void vocabularyDelete() {
+        VocabularyData selectedItem = vocabularyTable.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a word from the table to delete!");
+            return;
+        }
+
+        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
+            return;
+        }
+
+        String query = "DELETE FROM vocabulary WHERE id = ?";
+
+        try{
+            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setInt(1, selectedItem.getId());
+            preparedStatement.executeUpdate();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Word deleted successfully!");
+
+            vocabularyListShowData();
+        } catch(Exception e){
+            e.printStackTrace();
+//            System.out.println(e.getMessage());
+        }
+
+
     }
 
 
-    public ObservableList<VocabularyData> addVocabularyData() {
+    public ObservableList<VocabularyData> getVocabulary() {
         ObservableList<VocabularyData> listData = FXCollections.observableArrayList();
 
-//        Connection connectDB = DatabaseConnection.getConnection();
         String query = "SELECT * FROM vocabulary";
 
         PreparedStatement preparedStatement;
@@ -194,15 +202,14 @@ public class LearnTabController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+//            System.out.println(e.getMessage());
         }
 
         return listData;
     }
 
-    private ObservableList<VocabularyData> addVocabularyList;
-
-    public void setAddVocabularyListShowData(){
-        addVocabularyList = addVocabularyData();
+    public void vocabularyListShowData(){
+        ObservableList<VocabularyData> addVocabularyList = getVocabulary();
 
         wordColumn.setCellValueFactory(new PropertyValueFactory<>("word"));
         definitionColumn.setCellValueFactory(new PropertyValueFactory<>("definition"));
@@ -211,21 +218,22 @@ public class LearnTabController implements Initializable {
         vocabularyTable.setItems(addVocabularyList);
     }
 
-    public void learnActionButtonClicked() {
-        switchUI(learnActionButton.getScene(), "/llvt_group/llvt_project/learntab-view.fxml");
-    }
-    public void practiceActionButtonClicked() {
-        switchUI(practiceActionButton.getScene(), "/llvt_group/llvt_project/practicetab-view.fxml");
-    }
-    public void profileActionButtonClicked() {
-        switchUI(profileActionButton.getScene(), "/llvt_group/llvt_project/profiletab-view.fxml");
+    public void vocabularyReset(){
+        wordTextField.setText("");
+        definitionTextArea.setText("");
+        exampleTextArea.setText("");
     }
 
-    public void exitButtonOnAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+    public void vocabularySelect(){
+        VocabularyData vocabData = vocabularyTable.getSelectionModel().getSelectedItem();
 
-//        System.exit(0);
+        if (vocabData == null){
+            return;
+        }
+
+        wordTextField.setText(vocabData.getWord());
+        definitionTextArea.setText(vocabData.getDefinition());
+        exampleTextArea.setText(vocabData.getExampleSentence());
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {
@@ -243,20 +251,33 @@ public class LearnTabController implements Initializable {
         });
 
         germanMenuItem.setOnAction(e -> {
-            selectedLanguage = "GERMAN";
-            languageChooseBox.setText("GERMAN");
-        });
-
-        russianMenuItem.setOnAction(e -> {
             selectedLanguage = "RUSSIAN";
             languageChooseBox.setText("RUSSIAN");
         });
+
+        russianMenuItem.setOnAction(e -> {
+            selectedLanguage = "GERMAN";
+            languageChooseBox.setText("GERMAN");
+        });
+    }
+
+    public void learnActionButtonClicked() {
+        switchUI(learnActionButton.getScene(), "/llvt_group/llvt_project/learntab-view.fxml");
+    }
+    public void profileActionButtonClicked() {
+        switchUI(profileActionButton.getScene(), "/llvt_group/llvt_project/profiletab-view.fxml");
+    }
+
+    public void exitButtonOnAction() {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+
+//        System.exit(0);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectLanguage();
-        setAddVocabularyListShowData();
         vocabularyReset();
     }
 }

@@ -10,7 +10,7 @@ public class VocabularyData {
     private String exampleSentence;
     private boolean isLearned;
     private Integer userId;
-    private Date createdAt;
+    private String createdAt;
 
     public VocabularyData(Integer id, String word, String definition, Integer languageId,
                           String exampleSentence, boolean isLearned, Integer userId, String createdAt) {
@@ -21,7 +21,7 @@ public class VocabularyData {
         this.exampleSentence = exampleSentence;
         this.isLearned = isLearned;
         this.userId = userId;
-        this.createdAt = Date.valueOf(createdAt);
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -52,7 +52,7 @@ public class VocabularyData {
         return userId;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
@@ -84,7 +84,7 @@ public class VocabularyData {
         this.userId = userId;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

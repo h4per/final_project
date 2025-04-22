@@ -1,6 +1,5 @@
 package llvt_group.llvt_project.Dashboard;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -14,7 +13,6 @@ import javafx.stage.StageStyle;
 
 public class DashboardController {
     @FXML public Button learnActionButton;
-    @FXML public Button practiceActionButton;
     @FXML public Button profileActionButton;
     @FXML public Button exitButton;
 

@@ -2,6 +2,7 @@ module llvt_group.llvt_project {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.slf4j;
 
     opens llvt_group.llvt_project to javafx.fxml;
     exports llvt_group.llvt_project;
