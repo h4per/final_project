@@ -1,9 +1,7 @@
 # LLVT Vocabulary Tracker  
 ‿︵‿ヽ(°□° )ノ︵‿︵  
-> _Learn languages, track your words, boost your brain._
-
 ---
-
+https://www.canva.com/design/DAGlVzn-QQk/sy9hEtH8keoSzGZxue9J1w/edit?utm_content=DAGlVzn-QQk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 ## Description
 
 This is a JavaFX-based application for managing vocabulary when learning a new language.  
@@ -33,6 +31,7 @@ Perfect for self-learners, polyglots, and memory freaks
 - Java 17+ 
 - JavaFX 23  
 - SQLite JDBC driver (already included)
+- SceneBuilder
 
 ---
 
@@ -42,7 +41,6 @@ Perfect for self-learners, polyglots, and memory freaks
 2. Set the path to your database in `DatabaseConnection.java`:
    ```java
    String url = "jdbc:sqlite:D:\\db_LVVT_project\\userAccounts.db";
-   
 ---
 
 ## How to use
