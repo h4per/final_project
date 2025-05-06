@@ -79,6 +79,7 @@ public class LearnTabController implements Initializable {
                     case "RUSSIAN" -> 2;
                     case "GERMAN" -> 3;
                     default -> 0;
+                    
                 };
 
                 preparedStatement.setString(1, wordTextField.getText());

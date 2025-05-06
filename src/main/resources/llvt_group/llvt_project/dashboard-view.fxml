@@ -52,7 +52,7 @@
 
          <!-- Learn Page -->
          <AnchorPane fx:id="welcomePage" prefHeight="700.0" prefWidth="635.0" style="-fx-background-color: #b6e500;">
-            <Label layoutX="30.0" layoutY="48.0" text="WELCOME PAGE">
+            <Label layoutX="30.0" layoutY="49.0" text="WELCOME PAGE">
                <font>
                   <Font name="MS Gothic" size="36.0" />
                </font>
