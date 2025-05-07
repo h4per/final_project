@@ -16,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import llvt_group.llvt_project.AllData.DatabaseConnection;
-import llvt_group.llvt_project.AllData.GetData;
 
 
 public class LoginController {
@@ -41,14 +40,10 @@ public class LoginController {
 
             } else {
                 if (queryResult.next()) {
-
-                    GetData.username = queryResult.getString("username");
-
                     showAlert(Alert.AlertType.INFORMATION, "Information", "You have successfully logged in!");
 
                     Stage currentStage = (Stage) loginButton.getScene().getWindow();
                     currentStage.close();
-
 
                     FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/llvt_group/llvt_project/dashboard-view.fxml"));
                     Parent root = fxmlLoader.load();
@@ -66,6 +61,7 @@ public class LoginController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+//          System.out.println(e.getMessage());
         }
     }
 
@@ -76,7 +72,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
     public void cancelButtonOnAction() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();

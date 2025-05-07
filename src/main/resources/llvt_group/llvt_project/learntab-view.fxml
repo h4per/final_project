@@ -58,20 +58,20 @@
             <!-- Learn Page -->
             <AnchorPane fx:id="learnPage" prefHeight="700.0" prefWidth="635.0" style="-fx-background-color: #b6e500;">
 
-                <TextField fx:id="wordTextField" layoutX="160.0" layoutY="154.0" prefHeight="28.0" prefWidth="240.0" promptText="ENTER WORD" style="-fx-border-color: #000000;">
+                <TextField fx:id="wordTextField" layoutX="160.0" layoutY="154.0" prefHeight="38.0" prefWidth="269.0" promptText="ENTER WORD" style="-fx-border-color: #000000;">
                     <font>
                         <Font name="MS Gothic" size="20.0" />
                     </font></TextField>
-                <TextArea fx:id="definitionTextArea" layoutX="160.0" layoutY="197.0" prefHeight="20.0" prefWidth="240.0" promptText="ENTER DEFINITION" style="-fx-border-color: #000000;">
+                <TextArea fx:id="definitionTextArea" layoutX="160.0" layoutY="197.0" prefHeight="51.0" prefWidth="269.0" promptText="ENTER DEFINITION/TRANSLATION" style="-fx-border-color: #000000;">
                     <font>
                         <Font name="MS Gothic" size="18.0" />
                     </font></TextArea>
-                <TextArea fx:id="exampleTextArea" layoutX="160.0" layoutY="253.0" prefHeight="20.0" prefWidth="240.0" promptText="ENTER USAGE EXAMPLE" style="-fx-border-color: #000000;">
+                <TextArea fx:id="exampleTextArea" layoutX="160.0" layoutY="253.0" prefHeight="53.0" prefWidth="270.0" promptText="ENTER USAGE EXAMPLE" style="-fx-border-color: #000000;">
                     <font>
                         <Font name="MS Gothic" size="18.0" />
                     </font></TextArea>
 
-                <Button fx:id="addWordButton" layoutX="412.0" layoutY="149.0" onAction="#vocabularyAdd" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD">
+                <Button fx:id="addWordButton" layoutX="439.0" layoutY="151.0" onAction="#vocabularyAdd" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font></Button>
@@ -108,12 +108,12 @@
                         <Font name="MS Gothic" size="24.0" />
                     </font>
                 </Label>
-            <Button fx:id="updateWordButton" layoutX="411.0" layoutY="200.0" onAction="#vocabularyUpdate" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="UPDATE">
+            <Button fx:id="updateWordButton" layoutX="439.0" layoutY="200.0" onAction="#vocabularyUpdate" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="UPDATE">
                <font>
                   <Font name="MS Gothic" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="deleteWordButton" layoutX="412.0" layoutY="255.0" onAction="#vocabularyDelete" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="DELETE">
+            <Button fx:id="deleteWordButton" layoutX="439.0" layoutY="255.0" onAction="#vocabularyDelete" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="DELETE">
                <font>
                   <Font name="MS Gothic" size="24.0" />
                </font>

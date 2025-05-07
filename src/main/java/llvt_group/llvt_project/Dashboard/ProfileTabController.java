@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import llvt_group.llvt_project.AllData.DatabaseConnection;
-import llvt_group.llvt_project.AllData.GetData;
 import llvt_group.llvt_project.AllData.UserData;
 import static llvt_group.llvt_project.Dashboard.DashboardController.switchUI;
 
@@ -29,7 +28,6 @@ public class ProfileTabController implements Initializable {
     @FXML public Button exitButton;
 
     @FXML public Button logoutButton;
-    @FXML public Button updateButton;
     @FXML public Button userDeleteButton;
 
     @FXML public MenuButton languageChooseBox;
@@ -38,11 +36,6 @@ public class ProfileTabController implements Initializable {
     @FXML public Label wordsLearnedLabel;
 
     Connection connectDB = DatabaseConnection.getConnection();
-
-    public void displayUsername() {
-        String username = GetData.username;
-        usernameLabel.setText(username);
-    }
 
 
     public ObservableList<UserData> getUsers() {
@@ -117,6 +110,6 @@ public class ProfileTabController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        displayUsername();
+
     }
 }
