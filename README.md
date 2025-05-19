@@ -27,14 +27,18 @@
 
 ### Data Structures & Models
 ---
-1) `DashboardController` class
+## 1) `DashboardController` class
     Represents the landing page and logic of switching between tabs in the application.
-2) `LoginController` class
+    
+## 2) `LoginController` class
     Represents the login page and logic of user validation.
-3) `RegistartionController` class
+    
+## 3) `RegistartionController` class
     Represents the registration page and logic of adding user into batabase(registration).
-4) `LearnTabController` class
+    
+## 4) `LearnTabController` class
    Represents the main page of the application and holds metadata like ID, word, definition and etc.
+   
    - `ObservableList<VocabularyData>`: stores the data of the words
    - CRUD operations interact with SQLite database.
      
