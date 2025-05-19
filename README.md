@@ -8,7 +8,6 @@
 
 ### Description
 ## This is a JavaFX-based application for managing vocabulary when learning a new language.  You can add words, write definitions, provide usage examples, and organize them by language.  
----
 
 ## Features
 
@@ -19,10 +18,8 @@
 5. **Switch tabs** between Learn, Profile  
 6. **Clean and responsive UI** with JavaFX TableView  
 7. **SQLite database** — fast, light, local  
-8. **Auto-fill fields** when selecting a word  
-9. **Reset inputs** with one click  
+8. **Auto-fill fields** when selecting a word   
 10. **Fully offline and private** — your vocab is yours
----
 
 ## Installation
 
@@ -32,8 +29,6 @@
 - SQLite JDBC driver (already included)
 - SceneBuilder
 - DB Browser for SQLite
-
-
 ---
 
 ### Setup:
