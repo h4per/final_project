@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import llvt_group.llvt_project.AllData.CurrentUser;
 import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.UserData;
-//import llvt_group.llvt_project.AllData.VocabularyData;
 
 import static llvt_group.llvt_project.Dashboard.DashboardController.switchUI;
 

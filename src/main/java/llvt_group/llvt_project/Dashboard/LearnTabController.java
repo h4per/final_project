@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import static llvt_group.llvt_project.Dashboard.DashboardController.*;
 
 import llvt_group.llvt_project.AllData.CurrentUser;
-import llvt_group.llvt_project.AllData.UserData;
 import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.VocabularyData;
 
@@ -71,7 +70,6 @@ public class LearnTabController implements Initializable {
         String word = wordTextField.getText();
         String definition = definitionTextArea.getText();
         String example = exampleTextArea.getText();
-
 
         Integer usr_id = CurrentUser.getCurrentUser().getId();
 
