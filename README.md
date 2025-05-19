@@ -25,18 +25,18 @@
     
 ---
 
-### Data Structures & Models
+## Data Structures & Models
 ---
-## 1) `DashboardController` class
+# 1) `DashboardController` class
     Represents the landing page and logic of switching between tabs in the application.
     
-## 2) `LoginController` class
+# 2) `LoginController` class
     Represents the login page and logic of user validation.
     
-## 3) `RegistartionController` class
+# 3) `RegistartionController` class
     Represents the registration page and logic of adding user into batabase(registration).
     
-## 4) `LearnTabController` class
+# 4) `LearnTabController` class
    Represents the main page of the application and holds metadata like ID, word, definition and etc.
    
    - `ObservableList<VocabularyData>`: stores the data of the words
@@ -44,13 +44,29 @@
      
 ---
 
+## SQLite Schema
+    CREATE TABLE vocabulary (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word TEXT NOT NULL,
+    definition TEXT NOT NULL,
+    example_sentence TEXT NOT NULL,
+    language_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    is_learned BOOLEAN DEFAULT 0,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (language_id) REFERENCES languages(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+    );
+    CREATE TABLE languages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+    );
 
-## Database Structure
-- **Users Table**: Stores user login data, including username and password.
-- **Vocabulary Table**: Stores the vocabulary data, including word, definition, example, language, and user association.
-- **Database Management**: The app uses SQLite as a local database to handle user and vocabulary data.
-
----
 
 
 ## Installation
