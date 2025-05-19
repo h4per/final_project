@@ -4,13 +4,11 @@
 ---
 ### Presentation link ---> 
 ## https://www.canva.com/design/DAGlVzn-QQk/sy9hEtH8keoSzGZxue9J1w/edit?utm_content=DAGlVzn-QQk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
----
 
 ### Description
 ## This is a JavaFX-based application for managing vocabulary when learning a new language.  You can add words, write definitions, provide usage examples, and organize them by language.  
 
 ## Features
-
 1. **Add new words** with definitions and examples  
 2. **Choose a language**: English, German, Russian 
 3. **Avoid duplicates** – app checks before saving  
@@ -22,7 +20,6 @@
 10. **Fully offline and private** — your vocab is yours
 
 ## Installation
-
 ### Prerequisites:
 - Java 17+ 
 - JavaFX 23  
