@@ -29,7 +29,6 @@
 ---
 
 ### Setup:
-
 1. Clone or download the project  
 2. Set the path to your database in `DatabaseConnection.java`:
    ```java
