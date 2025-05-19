@@ -36,8 +36,8 @@
                 <MenuButton fx:id="languageChooseBox" layoutX="20.0" layoutY="368.0" style="-fx-background-color: transparent;" text="RUSSIAN" textFill="WHITE">
                     <items>
                         <MenuItem fx:id="englishMenuItem" text="ENGLISH" />
-                        <MenuItem fx:id="germanMenuItem" text="GERMAN" />
-                        <MenuItem fx:id="russianMenuItem" text="RUSSIAN" />
+                        <MenuItem fx:id="germanMenuItem" text="RUSSIAN" />
+                        <MenuItem fx:id="russianMenuItem" text="GERMAN" />
                     </items>
                     <font>
                         <Font name="MS Gothic" size="24.0" />

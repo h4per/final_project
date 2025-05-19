@@ -52,7 +52,52 @@ public class LearnTabController implements Initializable {
     @FXML public MenuButton languageChooseBox;
 
     Connection connectDB = DatabaseConnection.getConnection();
-    CurrentUser currentUser;
+
+
+    public ObservableList<VocabularyData> getVocabulary(int userId) {
+        ObservableList<VocabularyData> listData = FXCollections.observableArrayList();
+
+        String query = "SELECT * FROM vocabulary WHERE user_id = ?";
+
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        try{
+            preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+
+            resultSet = preparedStatement.executeQuery();
+
+            VocabularyData vocabData;
+            while(resultSet.next()){
+                vocabData = new VocabularyData(resultSet.getInt("id"),
+                        resultSet.getString("word"), resultSet.getString("definition"),
+                        resultSet.getInt("language_id"), resultSet.getString("example_sentence"), resultSet.getBoolean("is_learned"),
+                        resultSet.getInt("user_id"), resultSet.getString("created_at"));
+
+                listData.add(vocabData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+//            System.out.println(e.getMessage());
+        }
+
+        return listData;
+    }
+
+    public void vocabularyListShowData(){
+        int userId = CurrentUser.getCurrentUser().getId();
+
+        ObservableList<VocabularyData> addVocabularyList = getVocabulary(userId);
+
+        wordColumn.setCellValueFactory(new PropertyValueFactory<>("word"));
+        definitionColumn.setCellValueFactory(new PropertyValueFactory<>("definition"));
+        exampleColumn.setCellValueFactory(new PropertyValueFactory<>("exampleSentence"));
+
+        vocabularyTable.setItems(addVocabularyList);
+    }
+
 
     public void vocabularyAdd() {
         int languageId = switch (selectedLanguage.toUpperCase()) {
@@ -171,45 +216,6 @@ public class LearnTabController implements Initializable {
         }
     }
 
-    public ObservableList<VocabularyData> getVocabulary() {
-        ObservableList<VocabularyData> listData = FXCollections.observableArrayList();
-
-        String query = "SELECT * FROM vocabulary";
-
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
-
-        try{
-            preparedStatement = connectDB.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-
-            VocabularyData vocabData;
-            while(resultSet.next()){
-                vocabData = new VocabularyData(resultSet.getInt("id"),
-                        resultSet.getString("word"), resultSet.getString("definition"),
-                        resultSet.getInt("language_id"), resultSet.getString("example_sentence"), resultSet.getBoolean("is_learned"),
-                        resultSet.getInt("user_id"), resultSet.getString("created_at"));
-
-                listData.add(vocabData);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-//            System.out.println(e.getMessage());
-        }
-
-        return listData;
-    }
-
-    public void vocabularyListShowData(){
-        ObservableList<VocabularyData> addVocabularyList = getVocabulary();
-
-        wordColumn.setCellValueFactory(new PropertyValueFactory<>("word"));
-        definitionColumn.setCellValueFactory(new PropertyValueFactory<>("definition"));
-        exampleColumn.setCellValueFactory(new PropertyValueFactory<>("exampleSentence"));
-
-        vocabularyTable.setItems(addVocabularyList);
-    }
 
     public void vocabularyReset(){
         wordTextField.setText("");

@@ -28,7 +28,6 @@ public class RegistrationController {
 
     Connection connectDB = DatabaseConnection.getConnection();
 
-
     public void userAdd() {
         if (usernameTextField.getText().isEmpty() || passwordPasswordField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
@@ -63,11 +62,12 @@ public class RegistrationController {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println(e.getMessage());
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while adding the user. Please try again.");
-//          System.out.println(e.getMessage());
         }
     }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

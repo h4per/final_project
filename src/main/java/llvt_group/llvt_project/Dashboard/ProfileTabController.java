@@ -38,7 +38,7 @@ public class ProfileTabController implements Initializable {
     @FXML public Label updateAndDisplayLearnedWords;
 
     Connection connectDB = DatabaseConnection.getConnection();
-    UserData currentUser;
+    CurrentUser currentUser;
 
     public ObservableList<UserData> getUsers() {
         ObservableList<UserData> listData = FXCollections.observableArrayList();
@@ -63,8 +63,8 @@ public class ProfileTabController implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return listData;
     }
@@ -75,7 +75,7 @@ public class ProfileTabController implements Initializable {
 
         try {
             PreparedStatement preparedStatement = connectDB.prepareStatement(query);
-            int user_id = currentUser.getId();
+            int user_id = currentUser.getCurrentUser().getId();
 
             preparedStatement.setInt(1, user_id);
             preparedStatement.executeUpdate();
@@ -85,7 +85,8 @@ public class ProfileTabController implements Initializable {
             switchUI(userDeleteButton.getScene(), "/llvt_group/llvt_project/login-view.fxml");
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println(e.getMessage());
             showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
         }
     }
@@ -93,7 +94,6 @@ public class ProfileTabController implements Initializable {
 
     public void displayUsername(){
         UserData currentUser = CurrentUser.getCurrentUser();
-
         if (currentUser != null) {
             usernameLabel.setText(currentUser.getUsername());
         } else {
@@ -103,7 +103,7 @@ public class ProfileTabController implements Initializable {
 
 
     public void displayVocabulary() {
-        String query = "SELECT COUNT(is_learned) FROM vocabulary";
+        String query = "SELECT COUNT(is_learned) FROM vocabulary WHERE user_id = " + currentUser.getCurrentUser().getId();
 
         try {
             PreparedStatement preparedStatement = connectDB.prepareStatement(query);
@@ -115,8 +115,8 @@ public class ProfileTabController implements Initializable {
                 updateAndDisplayLearnedWords.setText(Integer.toString(count));
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            // System.out.println(e.getMessage());
+//            e.printStackTrace();
+             System.out.println(e.getMessage());
             showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
         }
     }
