@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 
 
 import static llvt_group.llvt_project.Dashboard.DashboardController.*;
-import llvt_group.llvt_project.Dashboard.ProfileTabController.*;
+
+import llvt_group.llvt_project.AllData.CurrentUser;
+import llvt_group.llvt_project.AllData.UserData;
 import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.VocabularyData;
 
@@ -51,6 +53,7 @@ public class LearnTabController implements Initializable {
     @FXML public MenuButton languageChooseBox;
 
     Connection connectDB = DatabaseConnection.getConnection();
+    CurrentUser currentUser;
 
     public void vocabularyAdd() {
         int languageId = switch (selectedLanguage.toUpperCase()) {
@@ -69,6 +72,9 @@ public class LearnTabController implements Initializable {
         String definition = definitionTextArea.getText();
         String example = exampleTextArea.getText();
 
+
+        Integer usr_id = CurrentUser.getCurrentUser().getId();
+
         String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, user_id, is_learned, created_at) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -79,7 +85,7 @@ public class LearnTabController implements Initializable {
             preparedStatement.setString(2, definition);
             preparedStatement.setString(3, example);
             preparedStatement.setInt(4, languageId);
-            preparedStatement.setInt(5, 0);
+            preparedStatement.setInt(5, usr_id);
             preparedStatement.setBoolean(6, true);
 
             int rows = preparedStatement.executeUpdate();

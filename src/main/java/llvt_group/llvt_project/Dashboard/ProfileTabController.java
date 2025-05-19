@@ -22,7 +22,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -68,38 +67,9 @@ public class ProfileTabController implements Initializable {
             e.printStackTrace();
 //            System.out.println(e.getMessage());
         }
-
         return listData;
     }
 
-    public void displayUsername(){
-            UserData currentUser = CurrentUser.getCurrentUser();
-
-            if (currentUser != null) {
-                usernameLabel.setText(currentUser.getUsername());
-            } else {
-                usernameLabel.setText("No user logged in");
-            }
-    }
-
-    public void displayVocabulary() {
-        String query = "SELECT COUNT(is_learned) FROM vocabulary";
-
-        try {
-            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                System.out.println("Learned words: " + count);
-                updateAndDisplayLearnedWords.setText(Integer.toString(count));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // System.out.println(e.getMessage());
-            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
-        }
-    }
 
     public void userDelete() {
         String query = "DELETE FROM users WHERE id = ?";
@@ -120,6 +90,38 @@ public class ProfileTabController implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
         }
     }
+
+
+    public void displayUsername(){
+        UserData currentUser = CurrentUser.getCurrentUser();
+
+        if (currentUser != null) {
+            usernameLabel.setText(currentUser.getUsername());
+        } else {
+            usernameLabel.setText("No user logged in");
+        }
+    }
+
+
+    public void displayVocabulary() {
+        String query = "SELECT COUNT(is_learned) FROM vocabulary";
+
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                System.out.println("Learned words: " + count);
+                updateAndDisplayLearnedWords.setText(Integer.toString(count));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // System.out.println(e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
+        }
+    }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
@@ -150,5 +152,6 @@ public class ProfileTabController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
         displayVocabulary();
+        getUsers();
     }
 }
