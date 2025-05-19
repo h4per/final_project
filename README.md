@@ -77,7 +77,6 @@
 - SQLite JDBC driver (already included)
 - SceneBuilder
 - DB Browser for SQLite
-- 
 ---
 
 # Setup:
