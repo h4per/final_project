@@ -1,9 +1,9 @@
 package llvt_group.llvt_project.AllData;
 
 public class UserData {
-    private static Integer id;
-    private static String username;
-    private final  String password;
+    private Integer id;
+    public static String username;
+    private String password;
 
     public UserData(Integer id, String username, String password) {
         this.id = id;
@@ -11,12 +11,22 @@ public class UserData {
         this.password = password;
     }
 
-    public static Integer getId() {
+    public Integer getId() {
         return id;
     }
-    public static String getUsername() {
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
         return username;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -26,3 +36,4 @@ public class UserData {
         return username;
     }
 }
+

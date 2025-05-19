@@ -28,6 +28,7 @@ public class RegistrationController {
 
     Connection connectDB = DatabaseConnection.getConnection();
 
+
     public void userAdd() {
         if (usernameTextField.getText().isEmpty() || passwordPasswordField.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
@@ -41,6 +42,7 @@ public class RegistrationController {
 
         try{
             PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.executeUpdate();

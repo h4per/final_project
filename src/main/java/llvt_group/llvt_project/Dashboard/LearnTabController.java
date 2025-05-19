@@ -10,7 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+
 import static llvt_group.llvt_project.Dashboard.DashboardController.*;
+import llvt_group.llvt_project.Dashboard.ProfileTabController.*;
 import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.VocabularyData;
 
@@ -50,16 +52,56 @@ public class LearnTabController implements Initializable {
 
     Connection connectDB = DatabaseConnection.getConnection();
 
+    public void vocabularyAdd() {
+        int languageId = switch (selectedLanguage.toUpperCase()) {
+            case "ENGLISH" -> 1;
+            case "RUSSIAN" -> 2;
+            case "GERMAN" -> 3;
+            default -> 0;
+        };
+
+        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
+            return;
+        }
+
+        String word = wordTextField.getText();
+        String definition = definitionTextArea.getText();
+        String example = exampleTextArea.getText();
+
+        String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, user_id, is_learned, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+
+            preparedStatement.setString(1, word);
+            preparedStatement.setString(2, definition);
+            preparedStatement.setString(3, example);
+            preparedStatement.setInt(4, languageId);
+            preparedStatement.setInt(5, 0);
+            preparedStatement.setBoolean(6, true);
+
+            int rows = preparedStatement.executeUpdate();
+
+            if (rows > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Word added successfully.");
+                vocabularyReset();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+//            System.out.println(e.getMessage());
+
+            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
+        }
+    }
+
     public void vocabularyUpdate() {
         VocabularyData selectedItem = vocabularyTable.getSelectionModel().getSelectedItem();
 
         if (selectedItem == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a word from the table to update!");
-            return;
-        }
-
-        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
             return;
         }
 
@@ -101,62 +143,11 @@ public class LearnTabController implements Initializable {
         }
     }
 
-    public void vocabularyAdd() {
-        int languageId = switch (selectedLanguage.toUpperCase()) {
-            case "ENGLISH" -> 1;
-            case "RUSSIAN" -> 2;
-            case "GERMAN" -> 3;
-            default -> 0;
-        };
-
-        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
-            return;
-        }
-
-        String word = wordTextField.getText();
-        String definition = definitionTextArea.getText();
-        String example = exampleTextArea.getText();
-
-
-        String query = "INSERT INTO vocabulary (word, definition, example_sentence, language_id, user_id, is_learned, created_at) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
-
-            preparedStatement.setString(1, word);
-            preparedStatement.setString(2, definition);
-            preparedStatement.setString(3, example);
-            preparedStatement.setInt(4, languageId);
-            preparedStatement.setInt(5, 1);
-            preparedStatement.setBoolean(6, true);
-
-            int rows = preparedStatement.executeUpdate();
-
-            if (rows > 0) {
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Word added successfully.");
-                vocabularyReset();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-//            System.out.println(e.getMessage());
-
-            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
-        }
-    }
-
     public void vocabularyDelete() {
         VocabularyData selectedItem = vocabularyTable.getSelectionModel().getSelectedItem();
 
         if (selectedItem == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a word from the table to delete!");
-            return;
-        }
-
-        if (wordTextField.getText().isEmpty() || definitionTextArea.getText().isEmpty() || exampleTextArea.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please fill all the fields!");
             return;
         }
 
@@ -169,12 +160,12 @@ public class LearnTabController implements Initializable {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Word deleted successfully!");
 
             vocabularyListShowData();
+
         } catch(Exception e){
             e.printStackTrace();
 //            System.out.println(e.getMessage());
         }
     }
-
 
     public ObservableList<VocabularyData> getVocabulary() {
         ObservableList<VocabularyData> listData = FXCollections.observableArrayList();
@@ -275,6 +266,7 @@ public class LearnTabController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectLanguage();
+        vocabularySelect();
         vocabularyReset();
     }
 }

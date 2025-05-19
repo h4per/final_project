@@ -9,7 +9,7 @@ public class DatabaseConnection {
 //    public final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public static Connection getConnection() {
-        String databaseURL = "jdbc:sqlite:D:\\db_LVVT_project\\userAccounts.db";
+        String databaseURL = "jdbc:sqlite:D:\\db_LVVT_project\\llvtDataBase.db";
 
         try{
             if(databaseLink == null || databaseLink.isClosed()) {

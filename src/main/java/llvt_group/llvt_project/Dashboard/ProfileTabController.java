@@ -10,8 +10,11 @@ import javafx.scene.control.*;
 
 import javafx.stage.Stage;
 
+import llvt_group.llvt_project.AllData.CurrentUser;
 import llvt_group.llvt_project.AllData.DatabaseConnection;
 import llvt_group.llvt_project.AllData.UserData;
+//import llvt_group.llvt_project.AllData.VocabularyData;
+
 import static llvt_group.llvt_project.Dashboard.DashboardController.switchUI;
 
 import java.net.URL;
@@ -19,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -33,10 +37,10 @@ public class ProfileTabController implements Initializable {
     @FXML public MenuButton languageChooseBox;
 
     @FXML public Label usernameLabel;
-    @FXML public Label wordsLearnedLabel;
+    @FXML public Label updateAndDisplayLearnedWords;
 
     Connection connectDB = DatabaseConnection.getConnection();
-
+    UserData currentUser;
 
     public ObservableList<UserData> getUsers() {
         ObservableList<UserData> listData = FXCollections.observableArrayList();
@@ -51,6 +55,7 @@ public class ProfileTabController implements Initializable {
             resultSet = preparedStatement.executeQuery();
 
             UserData userData;
+
             while (resultSet.next()) {
                 userData = new UserData(resultSet.getInt("id"),
                         resultSet.getString("username"),
@@ -67,19 +72,52 @@ public class ProfileTabController implements Initializable {
         return listData;
     }
 
+    public void displayUsername(){
+            UserData currentUser = CurrentUser.getCurrentUser();
+
+            if (currentUser != null) {
+                usernameLabel.setText(currentUser.getUsername());
+            } else {
+                usernameLabel.setText("No user logged in");
+            }
+    }
+
+    public void displayVocabulary() {
+        String query = "SELECT COUNT(is_learned) FROM vocabulary";
+
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                System.out.println("Learned words: " + count);
+                updateAndDisplayLearnedWords.setText(Integer.toString(count));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // System.out.println(e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
+        }
+    }
+
     public void userDelete() {
         String query = "DELETE FROM users WHERE id = ?";
-        try{
+
+        try {
             PreparedStatement preparedStatement = connectDB.prepareStatement(query);
-            preparedStatement.setInt(1, getUsers().get(0).getId());
+            int user_id = currentUser.getId();
+
+            preparedStatement.setInt(1, user_id);
             preparedStatement.executeUpdate();
+
             showAlert(Alert.AlertType.INFORMATION, "Success", "User deleted successfully!");
 
             switchUI(userDeleteButton.getScene(), "/llvt_group/llvt_project/login-view.fxml");
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-//            System.out.println(e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Database error", e.getMessage());
         }
     }
 
@@ -110,6 +148,7 @@ public class ProfileTabController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        displayUsername();
+        displayVocabulary();
     }
 }

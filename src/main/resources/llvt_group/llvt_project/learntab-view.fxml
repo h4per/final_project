@@ -71,17 +71,20 @@
                         <Font name="MS Gothic" size="18.0" />
                     </font></TextArea>
 
-                <Button fx:id="addWordButton" layoutX="439.0" layoutY="151.0" onAction="#vocabularyAdd" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD">
+                <Button fx:id="addWordButton" layoutX="439.0" layoutY="150.0" onAction="#vocabularyAdd" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="ADD">
                     <font>
                         <Font name="MS Gothic" size="24.0" />
                     </font></Button>
 
-                <TableView fx:id="vocabularyTable" layoutX="35.0" layoutY="422.0" onMouseClicked="#vocabularyListShowData" onMouseEntered="#vocabularyListShowData" onSort="#vocabularySelect" prefHeight="180.0" prefWidth="550.0">
+                <TableView fx:id="vocabularyTable" layoutX="35.0" layoutY="422.0" onMouseClicked="#vocabularyListShowData" onMouseEntered="#vocabularyListShowData" prefHeight="180.0" prefWidth="550.0">
                     <columns>
                         <TableColumn fx:id="wordColumn" prefWidth="183.0" text="WORD" />
                         <TableColumn fx:id="definitionColumn" prefWidth="183.0" text="DEFINITION/TRANSLATION" />
                         <TableColumn fx:id="exampleColumn" prefWidth="183.0" text="EXAMPLE" />
                     </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
                 </TableView>
                 <Label layoutX="35.0" layoutY="373.0" text="ADDED VOCABULARY">
                     <font>
@@ -113,7 +116,7 @@
                   <Font name="MS Gothic" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="deleteWordButton" layoutX="439.0" layoutY="255.0" onAction="#vocabularyDelete" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="DELETE">
+            <Button fx:id="deleteWordButton" layoutX="439.0" layoutY="253.0" onAction="#vocabularyDelete" prefHeight="45.0" prefWidth="108.0" style="-fx-border-color: #000000; -fx-background-color: #000000; -fx-text-fill: white;" text="DELETE">
                <font>
                   <Font name="MS Gothic" size="24.0" />
                </font>
