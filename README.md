@@ -8,7 +8,7 @@
 ### Description
 ## This is a JavaFX-based application for managing vocabulary when learning a new language.  You can add words, write definitions, provide usage examples, and organize them by language.  
 
-## Features
+### Features
 1. **Add new words** with definitions and examples  
 2. **Choose a language**: English, German, Russian 
 3. **Avoid duplicates** – app checks before saving  
