@@ -19,9 +19,8 @@
 4. **Update existing words** easily  
 5. **Switch tabs** between Learn, Profile  
 6. **Clean and responsive UI** with JavaFX TableView  
-7. **SQLite database** — fast, light, local  
-8. **Auto-fill fields** when selecting a word   
-10. **Fully offline and private** — your vocab is yours
+7. **SQLite database** — fast, light, local   
+8. **Fully offline and private** — your vocab is yours
     
 ---
 
